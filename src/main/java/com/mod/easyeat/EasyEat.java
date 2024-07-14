@@ -1,4 +1,4 @@
-package com.example.quickeatmod;
+package com.mod.easyeat;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -6,13 +6,13 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 
-public class Quickeatmod implements ClientModInitializer {
+public class EasyEat implements ClientModInitializer {
 
     private boolean[] isQuickEating = new boolean[9];
 
     @Override
     public void onInitializeClient() {
-        System.out.println("QuickEatMod initialized!");
+        System.out.println("EasyEat initialized!");
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (client.player == null) return;
@@ -24,7 +24,7 @@ public class Quickeatmod implements ClientModInitializer {
                     ItemStack stack = client.player.getInventory().getStack(i);
                     if (stack.isFood()) {
                         if (!isQuickEating[i]) {
-                            System.out.println("Starting to quick-eat food in slot " + (i+1));
+                            System.out.println("Starting to easy-eat food in slot " + (i+1));
                             client.player.getInventory().selectedSlot = i;
                             isQuickEating[i] = true;
                             client.interactionManager.interactItem(client.player, Hand.MAIN_HAND);
@@ -33,7 +33,7 @@ public class Quickeatmod implements ClientModInitializer {
                     }
                 } else {
                     if (isQuickEating[i]) {
-                        System.out.println("Stopped quick-eating from slot " + (i+1));
+                        System.out.println("Stopped easy-eating from slot " + (i+1));
                         isQuickEating[i] = false;
                     }
                 }

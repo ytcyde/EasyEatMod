@@ -1,26 +1,26 @@
 {
 	"schemaVersion": 1,
-	"id": "quickeatmod",
+	"id": "easy_eat",
 	"version": "${version}",
-	"name": "quickeatmod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "EasyEat",
+	"description": "A Minecraft mod that grants you the ability to eat while holding down the hotbar key for the slot.",
 	"authors": [
-		"Me!"
+		"Cyde / CydeFM"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://cyde.xyz/",
+		"sources": "https://github.com/scarifyFX/EasyEatMod"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/quickeatmod/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"client": [
-			"com.example.quickeatmod.Quickeatmod"
+			"com.mod.easyeat.EasyEat"
 		]
 	},
 	"mixins": [
-		"quickeatmod.mixins.json"
+		"easyeat.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.15.11",
