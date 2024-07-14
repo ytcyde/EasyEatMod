@@ -4,7 +4,6 @@ EasyEat Mod is a client-side Minecraft mod that allows you to quickly consume fo
 
 ## Features
 
-- **Quick Food Consumption**: Hold down a designated key (default `V`) while having food in your hotbar to instantly consume it.
 - **Client-Side**: Works seamlessly on the client side, enhancing gameplay without affecting server performance or gameplay balance.
 
 ## Installation
