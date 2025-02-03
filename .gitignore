@@ -40,3 +40,5 @@ hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
+/remappedSrc/com/mod/easyeat/EasyEat.java
+/remappedSrc/com/example/quickeatmod/mixin/ExampleMixin.java
