@@ -3,6 +3,7 @@ package com.mod.easyeat;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 
@@ -22,7 +23,7 @@ public class EasyEat implements ClientModInitializer {
             for (int i = 0; i < 9; i++) {
                 if (client.options.hotbarKeys[i].isPressed()) {
                     ItemStack stack = client.player.getInventory().getStack(i);
-                    if (stack.isFood()) {
+                    if (client.player.getMainHandStack().getItem().getComponents().contains(DataComponentTypes.FOOD)) {
                         if (!isQuickEating[i]) {
                             System.out.println("Starting to easy-eat food in slot " + (i+1));
                             client.player.getInventory().selectedSlot = i;
@@ -35,17 +36,14 @@ public class EasyEat implements ClientModInitializer {
                     if (isQuickEating[i]) {
                         System.out.println("Stopped easy-eating from slot " + (i+1));
                         isQuickEating[i] = false;
+                        client.options.useKey.setPressed(false);  // Reset use key when stopping
                     }
                 }
             }
 
-            // Only override use key if we're quick-eating
+            // Only set use key to pressed if we're actively quick-eating
             if (anyQuickEating) {
                 client.options.useKey.setPressed(true);
-            } else {
-                // Reset the use key to its actual state
-                boolean rightMousePressed = MinecraftClient.getInstance().mouse.wasRightButtonClicked();
-                client.options.useKey.setPressed(rightMousePressed);
             }
         });
     }
