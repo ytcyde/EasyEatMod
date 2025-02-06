@@ -5,7 +5,7 @@
 	"name": "EasyEat",
 	"description": "A Minecraft mod that grants you the ability to eat while holding down the hotbar key for the slot.",
 	"authors": [
-		"Cyde / CydeFM"
+		"Cyde"
 	],
 	"contact": {
 		"homepage": "https://cyde.xyz/",
@@ -24,7 +24,7 @@
 	],
 	"depends": {
 		"fabricloader": ">=0.15.11",
-		"minecraft": "~1.21",
+		"minecraft": ">=1.21.1",
 		"java": ">=17",
 		"fabric-api": "*"
 	},

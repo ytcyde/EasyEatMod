@@ -10,6 +10,7 @@ import net.minecraft.util.Hand;
 public class EasyEat implements ClientModInitializer {
 
     private boolean[] isQuickEating = new boolean[9];
+    private boolean[] wasJustSelected = new boolean[9];  // Track newly selected slots
 
     @Override
     public void onInitializeClient() {
@@ -24,18 +25,25 @@ public class EasyEat implements ClientModInitializer {
                 if (client.options.hotbarKeys[i].isPressed()) {
                     ItemStack stack = client.player.getInventory().getStack(i);
                     if (client.player.getMainHandStack().getItem().getComponents().contains(DataComponentTypes.FOOD)) {
-                        if (!isQuickEating[i]) {
+                        if (!isQuickEating[i] && !wasJustSelected[i]) {
                             System.out.println("Starting to easy-eat food in slot " + (i+1));
                             client.player.getInventory().selectedSlot = i;
+                            wasJustSelected[i] = true;  // Mark as just selected
+                        } else if (!isQuickEating[i] && wasJustSelected[i]) {
+                            // Start eating after one tick delay
                             isQuickEating[i] = true;
+                            wasJustSelected[i] = false;
                             client.interactionManager.interactItem(client.player, Hand.MAIN_HAND);
                         }
-                        anyQuickEating = true;
+                        if (isQuickEating[i]) {
+                            anyQuickEating = true;
+                        }
                     }
                 } else {
                     if (isQuickEating[i]) {
                         System.out.println("Stopped easy-eating from slot " + (i+1));
                         isQuickEating[i] = false;
+                        wasJustSelected[i] = false;
                         client.options.useKey.setPressed(false);  // Reset use key when stopping
                     }
                 }
