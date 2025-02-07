@@ -33,7 +33,6 @@ public class EasyEat implements ClientModInitializer {
                             // Start eating after one tick delay
                             isQuickEating[i] = true;
                             wasJustSelected[i] = false;
-                            client.interactionManager.interactItem(client.player, Hand.MAIN_HAND);
                         }
                         if (isQuickEating[i]) {
                             anyQuickEating = true;
